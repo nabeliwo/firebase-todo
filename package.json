@@ -1,0 +1,22 @@
+{
+  "name": "firestore-todo",
+  "version": "1.0.0",
+  "description": "firestore-todo",
+  "main": "index.js",
+  "scripts": {
+    "firebase": "firebase"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nabeliwo/firestore-todo.git"
+  },
+  "author": "nabeliwo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nabeliwo/firestore-todo/issues"
+  },
+  "homepage": "https://github.com/nabeliwo/firestore-todo#readme",
+  "devDependencies": {
+    "firebase-tools": "^3.17.6"
+  }
+}
