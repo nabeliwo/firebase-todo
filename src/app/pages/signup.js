@@ -1,19 +1,21 @@
+import firebase from 'firebase'
 import React from 'react'
-import firebase from 'firebase';
+import config from '../config'
+
 
 export default class SignUp extends React.Component {
   onSubmit(e) {
     e.preventDefault()
 
-    firebase.auth()
-    // .createUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
-    // .then(data => {
-    //   console.log('success')
-    //   console.log(data)
-    // })
-    // .catch(e => {
-    //   if (e) console.log(`${e.code} : e.message`)
-    // })
+    firebase.initializeApp(config.firebase)
+    firebase.auth().createUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
+    .then(data => {
+      console.log('success')
+      console.log(data)
+    })
+    .catch(e => {
+      if (e) console.log(`${e.code} : e.message`)
+    })
   }
 
   render() {
