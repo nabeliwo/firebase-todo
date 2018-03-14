@@ -3,12 +3,12 @@ import React from 'react'
 import Link from 'next/link'
 import config from '../config'
 
-export default class SignUp extends React.Component {
+export default class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault()
 
     firebase.initializeApp(config.firebase)
-    firebase.auth().createUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
+    firebase.auth().signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
     .then(data => {
       console.log('success')
       console.log(data)
@@ -21,11 +21,11 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Sign up</h1>
+        <h1>Login</h1>
         Email: <input type="email" name="email" />
         Password: <input type="password" name="password" />
         <input type="submit" />
-        <Link href="/login">to login</Link>
+        <Link href="/signup">to sign up</Link>
       </form>
     )
   }
