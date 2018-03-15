@@ -1,20 +1,18 @@
-import firebase from 'firebase'
 import React from 'react'
 import Link from 'next/link'
-import config from '../config'
+import { firebaseAuth } from '../../lib/firebase/'
 
 export default class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault()
 
-    firebase.initializeApp(config.firebase)
-    firebase.auth().signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
+    firebaseAuth().signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
     .then(data => {
       console.log('success')
       console.log(data)
     })
     .catch(e => {
-      if (e) console.log(`${e.code} : e.message`)
+      if (e) console.log(`${e.code} : ${e.message}`)
     })
   }
 
