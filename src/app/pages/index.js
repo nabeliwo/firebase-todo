@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import App from '../components/App'
+
+import Wrapper from '../components/Layouts/Wrapper/'
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -9,7 +10,9 @@ const Title = styled.h1`
 `
 
 export default () => (
-  <App>
-    <Title>Index Page</Title>
-  </App>
+  <Wrapper>
+    <React.Fragment>
+      <Title>Index Page</Title>
+    </React.Fragment>
+  </Wrapper>
 )
