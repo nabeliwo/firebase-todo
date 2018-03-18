@@ -4,5 +4,6 @@ export const color = {
 }
 
 export const layout = {
-  headerHeight: '40px'
+  headerHeight: '40px',
+  footerHeight: '40px'
 }

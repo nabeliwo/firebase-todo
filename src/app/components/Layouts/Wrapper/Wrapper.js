@@ -3,6 +3,7 @@ import React from 'react'
 import baseStyle from './baseStyle'
 import Header from '../Header/'
 import Footer from '../Footer/'
+import { Main } from './style'
 
 // inject global styles
 baseStyle()
@@ -10,9 +11,9 @@ baseStyle()
 const Wrapper = ({ children }) => (
   <React.Fragment>
     <Header />
-    <main>
+    <Main>
       {children}
-    </main>
+    </Main>
     <Footer />
   </React.Fragment>
 )
