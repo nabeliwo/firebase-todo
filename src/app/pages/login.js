@@ -1,6 +1,9 @@
 import React from 'react'
+import Login from '../components/pages/Login/'
 
-export default () => <div>login</div>
+export default () => (
+  <Login />
+)
 
 // import Link from 'next/link'
 // import { firebaseAuth } from '../../lib/firebase/'

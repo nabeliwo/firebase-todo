@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>firestore todo</title>
+          <title>firebase todo</title>
           {this.props.styleTags}
         </Head>
         <body>

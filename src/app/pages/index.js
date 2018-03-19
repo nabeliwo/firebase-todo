@@ -11,8 +11,6 @@ const Title = styled.h1`
 
 export default () => (
   <Wrapper>
-    <React.Fragment>
-      <Title>Index Page</Title>
-    </React.Fragment>
+    <Title>Index Page</Title>
   </Wrapper>
 )

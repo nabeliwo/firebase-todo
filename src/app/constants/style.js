@@ -1,6 +1,9 @@
 export const color = {
   primary: '#dc61c0',
-  white: '#fff'
+
+  white: '#fff',
+  gray: '#808080',
+  lightPink: '#f1e2f1'
 }
 
 export const layout = {

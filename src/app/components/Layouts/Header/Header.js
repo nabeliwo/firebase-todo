@@ -7,7 +7,7 @@ export default ({ router }) => {
   const toHome = '/'
   const logo = (
     <Link href={toHome}>
-      <a>firestore todo</a>
+      <a>firebase todo</a>
     </Link>
   )
 
