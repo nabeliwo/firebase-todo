@@ -1,9 +1,16 @@
 import React from 'react'
 import Login from '../components/pages/Login/'
 
-export default () => (
-  <Login />
-)
+export default class LoginPage extends React.Component {
+  login(e) {
+    console.log(e.target.login_email.value)
+    console.log(e.target.login_password.value)
+  }
+
+  render() {
+    return <Login onSubmit={this.login} />
+  }
+}
 
 // import Link from 'next/link'
 // import { firebaseAuth } from '../../lib/firebase/'

@@ -14,11 +14,11 @@ export const Box = styled.div`
   width: 300px;
   padding: 10px 20px 20px;
   border-radius: 3px;
-  background-color: ${color.lightPink};
+  background-color: ${color.blueLight};
 `
 
 export const FieldList = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 `
 
 export const Field = styled.div`
@@ -28,7 +28,8 @@ export const Field = styled.div`
 export const Label = styled.label`
   display: block;
   margin-bottom: 10px;
-  color: ${color.primary};
+  color: ${color.blue};
+  font-weight: bold;
   font-size: 1.4rem;
   cursor: pointer;
 `
@@ -36,7 +37,7 @@ export const Label = styled.label`
 export const Input = styled.input`
   display: block;
   width: 100%;
-  padding: 5px 10px;
+  padding: 8px 10px;
   border-radius: 3px;
   background-color: ${color.white};
   color: ${color.gray};
@@ -48,11 +49,11 @@ export const Submit = styled.input`
   width: 100%;
   padding: 8px 0;
   border-radius: 3px;
-  background-color: ${color.primary};
+  background-color: ${color.blue};
   color: ${color.white};
   font-size: 1.4rem;
   text-align: center;
   cursor: pointer;
 
-  &:hover { background-color: ${color.primary}; }
+  &:hover { filter: brightness(110%); }
 `

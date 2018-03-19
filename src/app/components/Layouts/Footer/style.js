@@ -8,7 +8,7 @@ export const Footer = styled.footer`
   align-items: center;
   justify-content: center;
   padding: 0 10px;
-  background-color: ${color.primary};
+  background-color: ${color.purple};
 `
 
 export const Copy = styled.p`

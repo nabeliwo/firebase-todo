@@ -1,9 +1,10 @@
 export const color = {
-  primary: '#dc61c0',
-
   white: '#fff',
   gray: '#808080',
-  lightPink: '#f1e2f1'
+
+  purple: '#cf8eff',
+  blue: '#75bbef',
+  blueLight: '#dfeaff'
 }
 
 export const layout = {
