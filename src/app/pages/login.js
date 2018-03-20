@@ -2,9 +2,9 @@ import React from 'react'
 import Login from '../components/pages/Login/'
 
 export default class LoginPage extends React.Component {
-  login(e) {
-    console.log(e.target.login_email.value)
-    console.log(e.target.login_password.value)
+  login({ target }) {
+    console.log(target.login_email.value)
+    console.log(target.login_password.value)
   }
 
   render() {
