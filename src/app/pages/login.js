@@ -1,43 +1,57 @@
 import React from 'react'
+import firebase from 'firebase'
+import { bindActionCreators } from 'redux'
+import withRedux from 'next-redux-wrapper'
+
+import config from '../../config/client'
+import { initialize } from '../store/auth/actions'
+import initStore from '../store/configureStore'
 import Login from '../components/pages/Login/'
 
-export default class LoginPage extends React.Component {
-  login({ target }) {
-    console.log(target.login_email.value)
-    console.log(target.login_password.value)
-  }
-
-  render() {
-    return <Login onSubmit={this.login} />
+const mapStateToProps = store => ({ auth: store.auth })
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initialize: bindActionCreators(initialize, dispatch)
   }
 }
 
-// import Link from 'next/link'
-// import { firebaseAuth } from '../../lib/firebase/'
+@withRedux(initStore, mapStateToProps, mapDispatchToProps)
+export default class LoginPage extends React.Component {
+  componentDidMount() {
+    const { auth, initialize } = this.props
 
-// export default class Login extends React.Component {
-//   onSubmit(e) {
-//     e.preventDefault()
+    if (!auth.initialized) {
+      firebase.initializeApp(config.firebase.credential)
+      this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log('ログイン済みです')
+          console.log(user)
+          user.getIdToken()
+          .then((token) => {
+            console.log(token)
+          })
+        } else {
+          console.log('ログインしてないです')
+        }
+      })
+      this.props.initialize()
+    }
+  }
 
-//     firebaseAuth().signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
-//     .then(data => {
-//       console.log('success')
-//       console.log(data)
-//     })
-//     .catch(e => {
-//       if (e) console.log(`${e.code} : ${e.message}`)
-//     })
-//   }
+  componentWillUnmount() {
+    this.unsubscribe && this.unsubscribe()
+  }
 
-//   render() {
-//     return (
-//       <form onSubmit={this.onSubmit}>
-//         <h1>Login</h1>
-//         Email: <input type="email" name="email" />
-//         Password: <input type="password" name="password" />
-//         <input type="submit" />
-//         <Link href="/signup">to sign up</Link>
-//       </form>
-//     )
-//   }
-// }
+  onSubmit(e) {
+    e.preventDefault()
+
+    firebase.auth().signInWithEmailAndPassword(e.target.login_email.value, e.target.login_password.value)
+    .catch(e => {
+      if (e) console.log(`${e.code} : ${e.message}`)
+    })
+  }
+
+  render() {
+    return <Login user={this.props.auth.user} onSubmit={this.onSubmit} />
+  }
+}

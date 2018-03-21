@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { Header, Title } from './style'
 
-export default ({ router }) => {
+export default ({ user, router }) => {
   const toHome = '/'
   const logo = (
     <Link href={toHome}>
@@ -19,6 +19,9 @@ export default ({ router }) => {
         : <p>{logo}</p>
         }
       </Title>
+      {user && (
+        <p>user.name</p>
+      )}
     </Header>
   )
 }

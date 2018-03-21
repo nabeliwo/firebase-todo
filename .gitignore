@@ -4,4 +4,4 @@
 .DS_Store
 node_modules/
 dist/
-src/app/config.js
+src/config/

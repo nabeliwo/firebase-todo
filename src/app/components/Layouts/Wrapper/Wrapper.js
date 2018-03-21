@@ -8,9 +8,9 @@ import { Main } from './style'
 // inject global styles
 baseStyle()
 
-const Wrapper = ({ children }) => (
+const Wrapper = ({ user, children }) => (
   <React.Fragment>
-    <Header />
+    <Header user={user} />
     <Main>
       {children}
     </Main>

@@ -1,16 +1,51 @@
 import React from 'react'
-import styled from 'styled-components'
+import firebase from 'firebase'
+import 'firebase/firestore'
+import { bindActionCreators } from 'redux'
+import withRedux from 'next-redux-wrapper'
+import Router from 'next/router'
 
-import Wrapper from '../components/Layouts/Wrapper/'
+import config from '../../config/client'
+import { initialize } from '../store/auth/actions'
+import initStore from '../store/configureStore'
+import Top from '../components/pages/Top/'
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`
+const mapStateToProps = store => ({ auth: store.auth })
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initialize: bindActionCreators(initialize, dispatch)
+  }
+}
 
-export default () => (
-  <Wrapper>
-    <Title>Index Page</Title>
-  </Wrapper>
-)
+@withRedux(initStore, mapStateToProps, mapDispatchToProps)
+export default class TopPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      authenticated: false
+    }
+  }
+
+  componentDidMount() {
+    const { auth, initialize } = this.props
+
+    if (!auth.initialized) {
+      firebase.initializeApp(config.firebase.credential)
+      this.props.initialize()
+    }
+
+    this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (!user) Router.replace('/login')
+      this.setState({ authenticated: true })
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe && this.unsubscribe()
+  }
+
+  render() {
+    return this.state.authenticated ? <Top user={this.props.user} /> : <p>Loading...</p>
+  }
+}
